@@ -1,0 +1,112 @@
+:root {
+  --background-color: #121212;
+  --surface-color: #1e1e1e;
+  --primary-color: #0074bf;
+  --primary-variant-color: #00548c;
+  --secondary-color: #0d1846;
+  --on-background-color: #ffffff;
+  --on-surface-color: #e0e0e0;
+  --user-message-bg: #3700b3;
+  --model-message-bg: #2c2c2c;
+  --border-color: #333;
+  --font-family: 'Roboto', sans-serif;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-color: #f5f5f5;
+    --surface-color: #ffffff;
+    --primary-color: #0074bf;
+    --primary-variant-color: #00548c;
+    --secondary-color: #0d1846;
+    --on-background-color: #ffffff;
+    --on-surface-color: #333333;
+    --user-message-bg: #e1d6ff;
+    --model-message-bg: #f0f0f0;
+    --border-color: #ddd;
+  }
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--on-background-color);
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(187, 134, 252, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(187, 134, 252, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(187, 134, 252, 0);
+  }
+}
+
+/* Floating Action Button */
+.chatbot-fab {
+  font-weight: 500;
+  line-height: 60px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  width: 170px;
+  height: 60px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  text-decoration: none;
+  -webkit-transition: 0.25s ease;
+  -moz-transition: 0.25s ease;
+  -ms-transition: 0.25s ease;
+  -o-transition: 0.25s ease;
+  transition: 0.25s ease;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  z-index: 1000;
+  background-color: var(--primary-color);
+  color: var(--on-background-color);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--on-background-color);
+    border: none;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    flex-shrink: 0;
+    color: var(--primary-color);;
+  }
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+}
+
+.chatbot-fab:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+.chatbot-fab:active span {
+  animation: pulse 1s;
+}

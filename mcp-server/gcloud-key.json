@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "cosmic-reserve-472509-i5",
+  "private_key_id": "969a657f46f38c64dc3b992d4e2c91530d22fd33",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDeEj24I6XErgvA\nfAu8c4aMJi4YdKMd/if2gv6CIqm2VJeOx/5/csf8/o363ES+HDd3kSZ/o2qwoLkb\nX1JzR+sfJ+t/xq4NseLChbidgxAQBXwjhQPY8HcJse8CGbiji/QXJ/58FPTB1Lzb\nQDF9QuVi2qsp0eNBCkg45Jx6krz8HBIUHEimeQLrrjpswYz1P7HOZ409X7dwmQsA\nk6+FnksrxYjHKNhg+aGalXB+sDcPnuZ3DQ9pFviklk+2+Es/mPqxpFpeBsD26siu\nlw288vCHgZg06CSDoW6v4u3aD0E1S9oD4AQzzsTfTa4QRqpLQ5F2NNEO2oV+bSDU\nm1KaCXdVAgMBAAECggEABG8PzWfkzOb+tBKl91bFJnIytGlLwnMLIDhgVX/UrJ/G\nwOKMWcYUaSA5/Hq+Yp9Umi4LOzwriqhC2eGO119lueMFqDDy07IsCV87HuX5gaBi\naKEkwQWYEtj7ISsbTSSjtHynb5nJgz84oBYJhus5gj5EcZrPs0I9y+kAmM/qNwxc\n5pG3YZr7vkG/TQVLMI56VtpCnQdPaoI0F/pbhliHG+T4syA4bo9q7NdyXeQQ5Q6j\nK3usxe5Oy+69o33GgOJjjACyjT653QcXP8del3k+PY4wKy2zREMejcm5m0GD29oB\nGbx2vjVgqo6o3za5poVsyR+StiO3ruXo+biygbhjFwKBgQD4bdoWBjQ2GCKBl7YV\nM0leHv3RxKv9GPX7ffrTXxoDyuyHqj4JUERcSrISaqSdE+CAwseQUcLldFvOXYhe\nsjaFA2m4n5Z48Zb9Ijz/f5YBpIjuGJstMGSNzpkg6t2KGV1VGyKY7mA0WeZ79mtx\nInU+mztPfzBkjExKJkarFFltxwKBgQDk1sFgPvZgZIUPDwjiHpEaAOEU7AyPoSz4\nMWoZvQ3sUkGnyFEeiiJxYQg0ojGZLTw/691dIE/sAzkfMEVfXS3xWUWTxEDqD+ar\nY+2YsD0AVpxf48kD2ow/ffHIDAcj6caeAJiLUrZK4ndAmnkiaqAXd8+So3BAtx+X\ndle9c1FiAwKBgH38l+EbfFcCnl1CZyERRV/qL6a2KtLMWdMU7KNNU5Ag1RtoBtYK\nUuDLMMuOMbVHY09peHOEQ2bCP9zEKmh70JJcTL1IkbL8MipltrGMLrLekmLNL8UX\nCaew4o+DDJ8AhginHkCYg0mJXg33xj010GfTqZyDUDNtwzLHfoc8Zq35AoGAUQBr\nhsQCtfAe4UuzG0cymX/CLIO5loW4w0nKgr3W1dXwA5H2lNbUhkmQfAEFiXDnqMC2\npKYxZBtn9tBBXhY/kvTEmh+X0sI6JmTCz49iqGIADDk3CDQt/LN6CBOp215+vaL8\nXCS0/iDXkXicdEBF1sjEIuXTcDTh690qBZdyMT0CgYBVkSXCAk8ttjkl6kHmQNXt\nSyT++w7pLGfVcvWaaKijxmlhg1MtK3gHtDQ1Jpt+vXrj/ekxCVar1znxoeeD2jgo\nhk407S/BZlPtdxnO8UA0l3CPz98FW7Lz7fCmgepxLpM7IIEM0nQNdGiX2Ka8yMsL\nDkSB4VfxrijiIJS5w7r/Tg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "my-chatbot-service@cosmic-reserve-472509-i5.iam.gserviceaccount.com",
+  "client_id": "109100661622540495084",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/my-chatbot-service%40cosmic-reserve-472509-i5.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

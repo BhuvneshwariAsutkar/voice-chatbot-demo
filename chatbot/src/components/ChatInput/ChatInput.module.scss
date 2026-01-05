@@ -1,0 +1,91 @@
+.inputForm {
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+  border-top: 1px solid var(--border-color);
+  gap: 8px;
+}
+
+.input {
+  flex: 1 1;
+  resize: none;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 10px 16px;
+  font-size: 0.875rem;
+  font-family: inherit;
+  background-color: var(--background-color);
+  color: #000;
+  max-height: 150px; /* Limit growth */
+  overflow-y: auto;
+  scrollbar-width: none; /* For Firefox */
+}
+
+.input::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px var(--primary-variant-color);
+}
+
+.inputForm button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  flex-shrink: 0;
+  color: #fff;
+}
+
+.inputForm button:hover,
+.inputForm button:focus {
+  background-color: var(--primary-variant-color);
+  color: #fff;
+}
+
+.inputForm button:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+.inputForm button svg {
+  width: 20px;
+  height: 20px;
+  fill: white;
+}
+
+.voiceBtn {
+  background-color: var(--model-message-bg);
+}
+.voiceBtn.listening {
+  background-color: var(--primary-color);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(187, 134, 252, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(187, 134, 252, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(187, 134, 252, 0);
+  }
+}
+
+.voiceBtn svg {
+  fill: var(--on-surface-color);
+}
+.voiceBtn.listening svg {
+  fill: white;
+}
