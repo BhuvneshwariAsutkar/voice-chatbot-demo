@@ -11,11 +11,11 @@ dotenv.config()
 
 const client = new SpeechClient({
   keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS
-})
+});
 
 const client_tts = new TextToSpeechClient({
   keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS
-})
+});
 
 const userKeywords = [
   'my policy',
@@ -44,15 +44,14 @@ const userKeywords = [
   'my invoice',
   'my bill',
   'my status'
-]
+];
 
 // Create an MCP server
 const server = new McpServer({
   name: 'mcp-server',
   version: '1.0.0',
   description: 'Demo MCP server with Gemini, RAG, STT, and TTS tools',
-  
-})
+});
 
 // Add an addition tool
 server.registerTool(
@@ -155,9 +154,7 @@ server.registerTool(
               phrases: ['Bupa', 'Bupa By You'],
               boost: 20
             }
-          ],
-          enableAutomaticPunctuation: true
-          
+          ]
         }
       }
       const [response] = await client.recognize(request)
@@ -188,13 +185,7 @@ server.registerTool(
     const request = {
       input: { text },
       voice: { languageCode: 'en-US', ssmlGender: 'FEMALE' },
-      audioConfig: { audioEncoding: 'MP3' },
-      voice: {
-        languageCode: 'en-US',
-        ssmlGender: 'FEMALE',
-        name: 'en-US-Wavenet-F'
-      }
-      
+      audioConfig: { audioEncoding: 'MP3' }
     }
 
     const [response] = await client_tts.synthesizeSpeech(request)
@@ -210,39 +201,10 @@ app.use(express.json({ type: 'application/json', limit: '1mb' }))
 
 app.post('/mcp', async (req, res) => {
   try {
-    console.log('Incoming /mcp request body:', req.body);
     //bridge between the Express HTTP request/response and the MCP server, handling streaming and session management for each incoming request.
     const transport = new StreamableHTTPServerTransport({
-      sessionIdGenerator: req => {
-        // Generate a session ID based on request headers or other criteria
-        return req.headers['x-session-id'] || 'default-session'
-      },
-      enableJsonResponse: true,
-      req,
-      res,
-      server,
-      maxResponseSize: 5 * 1024 * 1024 // 5 MB
-      // logLevel: 'debug' --- IGNORE ---,
-      // enableMetrics: true --- IGNORE ---,
-      // enableTracing: true --- IGNORE ---
-      // timeoutMs: 2 * 60 * 1000 // 2 minutes --- IGNORE ---
-      // idleTimeoutMs: 30 * 1000 // 30 seconds --- IGNORE ---
-      // maxConcurrentRequestsPerSession: 5 --- IGNORE ---
-      // enableRequestLogging: true --- IGNORE ---
-      // enableResponseLogging: true --- IGNORE ---
-      // enableErrorLogging: true --- IGNORE ---
-      // customHeaders: { 'X-Custom-Header': 'value' } --- IGNORE ---
-      // corsOptions: { origin: '*' } --- IGNORE ---
-      // sessionStore: new InMemorySessionStore() --- IGNORE ---
-      // rateLimiter: new SimpleRateLimiter(100, 60 * 1000) --- IGNORE ---
-      // tracingOptions: { tracer: myTracer } --- IGNORE ---
-      // metricsOptions: { metricsCollector: myMetricsCollector } --- IGNORE ---
-      // authenticationHandler: async (req) => { return { userId
-      //   return { userId: 'user123' } } --- IGNORE ---
-      // requestValidator: (request) => { --- IGNORE ---
-      //   // custom validation logic --- IGNORE ---
-      //   return true --- IGNORE ---
-      // } --- IGNORE ---
+      sessionIdGenerator: undefined,
+      enableJsonResponse: true
     })
 
     res.on('close', () => {
@@ -252,17 +214,13 @@ app.post('/mcp', async (req, res) => {
     await server.connect(transport)
     await transport.handleRequest(req, res, req.body)
   } catch (err) {
-    console.error('MCP tool error:', err);
-    if (err && err.stack) {
-      console.error('Error stack:', err.stack);
-    }
+    console.error('MCP tool error:', err)
     if (!res.headersSent) {
       res.status(500).json({
         jsonrpc: '2.0',
         error: {
           code: -32603,
-          message:
-            'Sorry, we could not help right now. Please try again later.',
+          message: 'Internal server error',
           data: err.message
         },
         id: null

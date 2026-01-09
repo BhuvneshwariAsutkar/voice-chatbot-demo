@@ -66,6 +66,7 @@ export async function handleMCP (query) {
     }
   }
 
+  // --- Original logic fallback ---
   const { bestMatch, related } = faqMatchWithRelated(query, fastData);
   console.log('FAQ fast match result:', bestMatch)
   console.log('Related answers found:', related)
@@ -144,7 +145,7 @@ async function websiteAdapter () {
     const allFaqs = allFaqsArrays.flat()
     const result = {
       source: 'Website',
-      data: allFaqs.slice(0, 8),
+      data: allFaqs.slice(0, 8), // limit to top 8 FAQs
       message: `Fetched ${allFaqs.length} website FAQs from ${FAQ_URL_PATHS.length} pages`
     }
     cache.websiteData = result
@@ -163,7 +164,7 @@ async function websiteAdapter () {
 // 3️⃣ RAG adapter (semantic retrieval)
 async function ragAdapter (query) {
   const rag = await getRagSystem()
-  const docs = await rag.retrieve(query, 8)
+  const docs = await rag.retrieve(query, 5)
   console.log('RAG retrieved documents:', docs)
   return {
     source: 'RAG',

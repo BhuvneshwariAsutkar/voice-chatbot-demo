@@ -2,3 +2,5 @@ node_modules/
 build/
 *.log
 .env*
+gcloud-key.json
+HelpandSupportPage.csv

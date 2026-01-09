@@ -3,7 +3,6 @@ import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
 
-//function to measure similarity between two vectors using cosine similarity
 function cosineSimilarity (vecA, vecB) {
   let dotProduct = 0
   let normA = 0
@@ -18,7 +17,7 @@ function cosineSimilarity (vecA, vecB) {
   }
   return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB))
 }
-// RAGSystem to handle retrieval-augmented generation using Gemini API
+
 export class RAGSystem {
   documents = []
   ai
@@ -86,6 +85,7 @@ export class RAGSystem {
   async retrieve (query, k = 3) {
     if (this.documents.length === 0) return []
 
+    // Corrected API call: The method is directly on 'this.ai'
     const queryEmbeddingResponse = await this.ai.models.embedContent({
       model: 'text-embedding-004', // Using a newer model
       contents: [{ parts: [{ text: query }] }],

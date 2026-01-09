@@ -36,6 +36,26 @@ export default function ChatWidget ({ onClose, user }) {
     }
   }
 
+  // Utility to strip markdown formatting (e.g., **bold**, *italic*, __underline__, etc.)
+  function stripMarkdown(text) {
+    if (!text) return '';
+    // Remove bold, italic, underline, strikethrough, inline code, and links
+    return text
+      .replace(/\*\*([^*]+)\*\*/g, '$1') // **bold**
+      .replace(/\*([^*]+)\*/g, '$1') // *italic*
+      .replace(/__([^_]+)__/g, '$1') // __underline__
+      .replace(/_([^_]+)_/g, '$1') // _italic_
+      .replace(/~~([^~]+)~~/g, '$1') // ~~strikethrough~~
+      .replace(/`([^`]+)`/g, '$1') // `inline code`
+      .replace(/\[(.*?)\]\((.*?)\)/g, '$1') // [text](url)
+      .replace(/#+\s?([^\n]+)/g, '$1') // # headings
+      .replace(/>\s?([^\n]+)/g, '$1') // > blockquotes
+      .replace(/!\[(.*?)\]\((.*?)\)/g, '') // images
+      .replace(/\r?\n|\r/g, ' ') // newlines to space
+      .replace(/\s+/g, ' ') // collapse whitespace
+      .trim();
+  }
+
   // Converts a given text to speech using the /api/tts endpoint.
   // Fetches audio data, decodes it, and plays it using the Web Audio API.
   async function speakText (text) {
@@ -46,10 +66,11 @@ export default function ChatWidget ({ onClose, user }) {
     }
     stopTTS() // Stop any previous playback
     try {
+      const plainText = stripMarkdown(text)
       const response = await fetch('/api/tts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json; charset=utf-8' },
-        body: JSON.stringify({ text })
+        body: JSON.stringify({ text: plainText })
       })
       const data = await response.json()
       console.log('TTS audio data:', data)

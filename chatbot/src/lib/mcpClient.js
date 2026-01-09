@@ -19,7 +19,6 @@ export async function callMCP({ endPoint = server_endpoint, tool, params }) {
       },
       body: JSON.stringify(requestBody)
     });
-    console.log("MCP response status:", response);
     if (!response.ok) {
       throw new Error(`MCP request failed: ${response.statusText}`);
     }

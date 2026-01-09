@@ -10,7 +10,7 @@
     "start": "next start",
     "lint": "eslint"
   },
-  "dependencies": {    
+  "dependencies": {
     "cheerio": "^1.1.2",
     "csv-parser": "^3.2.0",
     "marked": "^15.0.7",

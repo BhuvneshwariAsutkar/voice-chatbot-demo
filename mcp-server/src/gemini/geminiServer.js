@@ -1,6 +1,5 @@
 import { GoogleGenAI } from '@google/genai';
 
-// GeminiServer to handle text completions using Google Gemini API
 export class GeminiServer {
   constructor(apiKey) {
     this.ai = new GoogleGenAI({ apiKey });

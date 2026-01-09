@@ -8,7 +8,6 @@ export async function POST(req) {
       tool: 'GetAnswer',
       params: { prompt }
     });
-    console.log('MCP Result:', mcpResult);
     if (mcpResult && mcpResult.error) {
       console.error('MCP Error Response:', mcpResult);
       return new Response(JSON.stringify({ error: mcpResult.error }), {
