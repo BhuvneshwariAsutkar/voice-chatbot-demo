@@ -7,6 +7,7 @@ import { getGemini } from './lib/getGemini.js'
 import dotenv from 'dotenv'
 import { SpeechClient } from '@google-cloud/speech'
 import { TextToSpeechClient } from '@google-cloud/text-to-speech'
+import { greetings, userKeywords } from './data/terms.js'
 dotenv.config()
 
 const client = new SpeechClient({
@@ -17,41 +18,14 @@ const client_tts = new TextToSpeechClient({
   keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS
 });
 
-const userKeywords = [
-  'my policy',
-  'my claim',
-  'my account',
-  'my premium',
-  'my coverage',
-  'my details',
-  'my information',
-  'my plan',
-  'my renewal',
-  'my payment',
-  'my id',
-  'my number',
-  'my statement',
-  'my balance',
-  'my address',
-  'my email',
-  'my phone',
-  'my contact',
-  'my login',
-  'my password',
-  'my user',
-  'my profile',
-  'my subscription',
-  'my invoice',
-  'my bill',
-  'my status'
-];
-
 // Create an MCP server
 const server = new McpServer({
   name: 'mcp-server',
   version: '1.0.0',
   description: 'Demo MCP server with Gemini, RAG, STT, and TTS tools',
 });
+
+let systemPrompt = `You are a helpful assistant for Bupa insurance customers. Use the provided context to answer user questions accurately and concisely. If the context does not contain the answer, respond with "I'm sorry, I don't have that information." Avoid making up answers.`;
 
 // Add an addition tool
 server.registerTool(
@@ -69,17 +43,6 @@ server.registerTool(
         structuredContent: { mcpResult: 'Prompt is required.' }
       }
     }
-
-    // Greeting detection
-    const greetings = [
-      'hi',
-      'hello',
-      'hey',
-      'greetings',
-      'good morning',
-      'good afternoon',
-      'good evening'
-    ]
     const normalizedPrompt = prompt.trim().toLowerCase()
     if (
       greetings.some(
@@ -97,7 +60,6 @@ server.registerTool(
     const containsKeyword = userKeywords.some(keyword =>
       normalizedPrompt.includes(keyword)
     )
-    let systemPrompt = `You are a professional and knowledgeable Bupa insurance assistant.\nYour primary goal is to provide clear, accurate, and helpful information based on the provided context.\n- Your tone should be formal, polite, and reassuring.\n- Address the user respectfully, but avoid overly casual language.\n- Do not mention that you are using a knowledge base or context. Simply present the information as if it is your own knowledge.\n- If the context does not contain the answer, politely state that you do not have that specific information and suggest they ask about Bupa health insurance topics.`
     if (containsKeyword) {
       systemPrompt += `\n\nThe user has asked about their personal insurance details. Be extra clear and ensure privacy is respected.`
     }
